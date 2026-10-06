@@ -40,3 +40,7 @@ __screenshots__/
 
 # Electron-сборки
 release/
+
+# Чужое из других веток
+android/
+runweb.bat
