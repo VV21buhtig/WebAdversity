@@ -12,7 +12,7 @@
     "type-check": "vue-tsc --build",
     "electron": "electron .",
     "electron:dev": "vite & electron .",
-    "dist-electron": "vite build && electron ."
+    "dist-electron": "vite build && electron-packager . Shop --platform=win32 --arch=x64 --electron-version=44.5.1 --out=release --overwrite"
   },
   "dependencies": {
     "pinia": "^3.0.4",
@@ -20,6 +20,7 @@
     "vue-router": "^5.0.4"
   },
   "devDependencies": {
+    "@electron/packager": "^20.3.0",
     "@tsconfig/node24": "^24.0.4",
     "@types/node": "^24.12.0",
     "@vitejs/plugin-vue": "^6.0.5",

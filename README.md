@@ -1,42 +1,44 @@
-# weather_web
+# Магазин как десктоп-приложение — ветка `electron`
 
-This template should help get you started developing with Vue 3 in Vite.
+Тот же магазин, что в `main` (каталог, поиск, фильтр, сортировка, корзина,
+`localStorage`, промокод `WEB` −10%), упакованный в Electron-окно.
 
-## Recommended IDE Setup
+Ветки репозитория:
+- `main` — веб
+- `electron` — десктоп (этот README)
+- `android` — нативный Kotlin-магазин под Android
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+Готовая сборка (распаковал → запустил `Shop.exe`) — в [Releases](../../releases).
 
-## Recommended Browser Setup
+## Требования
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+- Node.js 20.19+ или 22.12+
+- Windows x64 (сборка ниже) / любой десктоп для dev
 
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
+## Запуск из исходников
 
 ```sh
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+Dev (Vite + окно Electron поверх):
 
 ```sh
-npm run dev
+npm run dev        # терминал 1
+ELECTRON_DEV=1 npm run electron   # терминал 2 (Windows PowerShell: $env:ELECTRON_DEV=1; npm run electron)
 ```
 
-### Type-Check, Compile and Minify for Production
+Прод (окно грузит собранный `dist`):
 
 ```sh
 npm run build
+npm run electron
 ```
+
+## Сборка exe
+
+```sh
+npm run dist-electron
+```
+
+На выходе `release/Shop-win32-x64/Shop.exe` — запуск одной кнопкой, установка не нужна.

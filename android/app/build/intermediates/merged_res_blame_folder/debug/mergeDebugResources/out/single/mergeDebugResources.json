@@ -1,0 +1,34 @@
+[
+    {
+        "merged": "com.example.shop.app-debug-47:/drawable-nodpi_keyboard.jpg.flat",
+        "source": "com.example.shop.app-main-49:/drawable-nodpi/keyboard.jpg"
+    },
+    {
+        "merged": "com.example.shop.app-debug-47:/drawable-nodpi_notebook.jpg.flat",
+        "source": "com.example.shop.app-main-49:/drawable-nodpi/notebook.jpg"
+    },
+    {
+        "merged": "com.example.shop.app-debug-47:/drawable-nodpi_cap.jpg.flat",
+        "source": "com.example.shop.app-main-49:/drawable-nodpi/cap.jpg"
+    },
+    {
+        "merged": "com.example.shop.app-debug-47:/drawable-nodpi_monitor.jpg.flat",
+        "source": "com.example.shop.app-main-49:/drawable-nodpi/monitor.jpg"
+    },
+    {
+        "merged": "com.example.shop.app-debug-47:/drawable-nodpi_cup.jpg.flat",
+        "source": "com.example.shop.app-main-49:/drawable-nodpi/cup.jpg"
+    },
+    {
+        "merged": "com.example.shop.app-debug-47:/drawable-nodpi_hoodie.jpg.flat",
+        "source": "com.example.shop.app-main-49:/drawable-nodpi/hoodie.jpg"
+    },
+    {
+        "merged": "com.example.shop.app-debug-47:/drawable-nodpi_stickers.jpg.flat",
+        "source": "com.example.shop.app-main-49:/drawable-nodpi/stickers.jpg"
+    },
+    {
+        "merged": "com.example.shop.app-debug-47:/drawable-nodpi_mouse.jpg.flat",
+        "source": "com.example.shop.app-main-49:/drawable-nodpi/mouse.jpg"
+    }
+]

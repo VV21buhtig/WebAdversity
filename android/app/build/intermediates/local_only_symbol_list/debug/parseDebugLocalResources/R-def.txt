@@ -1,0 +1,11 @@
+R_DEF: Internal format may change without notice
+local
+drawable cap
+drawable cup
+drawable hoodie
+drawable keyboard
+drawable monitor
+drawable mouse
+drawable notebook
+drawable stickers
+style Theme.Shop
