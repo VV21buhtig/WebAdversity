@@ -1,42 +1,42 @@
-# weather_web
+# Магазин (Vue 3 + Vite) — ветка `main`
 
-This template should help get you started developing with Vue 3 in Vite.
+Интернет-магазин: каталог 8 товаров с фото, поиск, фильтр по категориям,
+сортировка по цене, корзина (+/−/удалить/очистить/итого), сохранение корзины
+в `localStorage`, промокод `WEB` (−10% на каждый товар и на итог).
 
-## Recommended IDE Setup
+Ветки репозитория:
+- `main` — веб (этот README)
+- `electron` — тот же магазин как десктоп-приложение
+- `android` — нативный Kotlin-магазин под Android
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+Готовые сборки — в [Releases](../../releases) (веб-архив, Electron exe, APK).
 
-## Recommended Browser Setup
+## Требования
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+- Node.js 20.19+ или 22.12+ (`node --version`)
+- npm (`npm --version`)
 
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
+## Запуск (dev)
 
 ```sh
 npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
 npm run dev
 ```
 
-### Type-Check, Compile and Minify for Production
+Открыть `http://localhost:5173`.
+
+## Сборка (production)
 
 ```sh
 npm run build
 ```
+
+Проверка типов + сборка в `dist/`. Посмотреть результат:
+
+```sh
+npm run preview
+```
+
+## Промокод
+
+`WEB` — скидка 10% (пересчёт цены каждого товара и итога).
