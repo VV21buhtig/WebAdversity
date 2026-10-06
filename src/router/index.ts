@@ -1,9 +1,15 @@
 import AuthView from '@/views/AuthView.vue'
 import HomeView from '@/views/HomeView.vue'
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
+
+// Под file:// (упакованный Electron) history API без сервера не работает — там хэш.
+const history =
+  window.location.protocol === 'file:'
+    ? createWebHashHistory()
+    : createWebHistory(import.meta.env.BASE_URL)
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history,
   routes: [
     {
       name: "HomeView",

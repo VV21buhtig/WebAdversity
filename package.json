@@ -12,7 +12,7 @@
     "type-check": "vue-tsc --build",
     "electron": "electron .",
     "electron:dev": "vite & electron .",
-    "dist-electron": "vite build && electron-packager . Shop --platform=win32 --arch=x64 --electron-version=44.5.1 --out=release --overwrite"
+    "dist-electron": "vite build --base=./ && electron-packager . Shop --platform=win32 --arch=x64 --electron-version=44.5.1 --out=release --overwrite"
   },
   "dependencies": {
     "pinia": "^3.0.4",
