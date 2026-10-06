@@ -143,9 +143,11 @@ fun ShopApp(ctx: Context) {
                 }
             }
             item(span = { GridItemSpan(maxLineSpan) }) {
-                Spacer(Modifier.height(4.dp))
-                Text("Корзина", style = MaterialTheme.typography.headlineSmall)
-                if (cart.isEmpty()) Text("Пусто")
+                Column {
+                    Spacer(Modifier.height(4.dp))
+                    Text("Корзина", style = MaterialTheme.typography.headlineSmall)
+                    if (cart.isEmpty()) Text("Пусто")
+                }
             }
             items(cart.entries.toList(), span = { GridItemSpan(maxLineSpan) }) { (id, qty) ->
                 val p = PRODUCTS.find { it.id == id } ?: return@items
@@ -161,11 +163,14 @@ fun ShopApp(ctx: Context) {
                 }
             }
             if (cart.isNotEmpty()) item(span = { GridItemSpan(maxLineSpan) }) {
+                Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
                 if (promo) Text("Без скидки: ${fmt(totalFull)} (−10%)")
                 Text("Итого: ${fmt(total)}", style = MaterialTheme.typography.titleMedium)
                 Button(onClick = { cart.clear(); persist() }) { Text("Очистить корзину") }
+                }
             }
             item(span = { GridItemSpan(maxLineSpan) }) {
+                Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
                 if (!promo) {
                     OutlinedTextField(value = promoInput, onValueChange = { promoInput = it },
                         label = { Text("Промокод (WEB = −10%)") })
@@ -182,6 +187,7 @@ fun ShopApp(ctx: Context) {
                     }
                 }
                 Spacer(Modifier.height(32.dp))
+                }
             }
         }
     }
