@@ -6,8 +6,10 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.GridItemSpan
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -95,49 +97,55 @@ fun ShopApp(ctx: Context) {
     val totalFull = cart.entries.sumOf { (id, qty) -> (PRODUCTS.find { it.id == id }?.price ?: 0) * qty }
 
     MaterialTheme {
-        LazyColumn(modifier = Modifier.fillMaxSize().padding(12.dp)) {
-            item {
-                Text("Магазин", style = MaterialTheme.typography.headlineMedium)
-                Text("Корзина: ${cart.values.sum()} · ${fmt(total)}")
-                Spacer(Modifier.height(8.dp))
-                OutlinedTextField(value = search, onValueChange = { search = it },
-                    label = { Text("Поиск товаров...") }, modifier = Modifier.fillMaxWidth())
-                Spacer(Modifier.height(8.dp))
+        LazyVerticalGrid(columns = GridCells.Fixed(2),
+            modifier = Modifier.fillMaxSize().padding(8.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp),
+            horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            item(span = { GridItemSpan(maxLineSpan) }) {
+                Column {
+                    Text("Магазин", style = MaterialTheme.typography.headlineMedium)
+                    Text("Корзина: ${cart.values.sum()} · ${fmt(total)}")
+                    Spacer(Modifier.height(8.dp))
+                    OutlinedTextField(value = search, onValueChange = { search = it },
+                        label = { Text("Поиск товаров...") }, modifier = Modifier.fillMaxWidth(),
+                        singleLine = true)
+                }
             }
-            item {
-                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                    cats.forEach { c ->
-                        FilterChip(selected = category == c, onClick = { category = c }, label = { Text(c) })
+            item(span = { GridItemSpan(maxLineSpan) }) {
+                Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                    Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        cats.forEach { c ->
+                            FilterChip(selected = category == c, onClick = { category = c }, label = { Text(c) })
+                        }
+                    }
+                    Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        FilterChip(selected = sortAsc == true, onClick = { sortAsc = if (sortAsc == true) null else true }, label = { Text("Дешевле") })
+                        FilterChip(selected = sortAsc == false, onClick = { sortAsc = if (sortAsc == false) null else false }, label = { Text("Дороже") })
                     }
                 }
-                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                    FilterChip(selected = sortAsc == true, onClick = { sortAsc = if (sortAsc == true) null else true }, label = { Text("Дешевле") })
-                    FilterChip(selected = sortAsc == false, onClick = { sortAsc = if (sortAsc == false) null else false }, label = { Text("Дороже") })
-                }
-                Spacer(Modifier.height(8.dp))
             }
-            if (filtered.isEmpty()) item { Text("Ничего не найдено") }
+            if (filtered.isEmpty()) item(span = { GridItemSpan(maxLineSpan) }) { Text("Ничего не найдено") }
             items(filtered) { p ->
-                Card(modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp)) {
-                    Column(Modifier.padding(12.dp)) {
+                Card(modifier = Modifier.fillMaxWidth()) {
+                    Column(Modifier.padding(8.dp)) {
                         Image(painterResource(p.image), p.name,
-                            modifier = Modifier.fillMaxWidth().height(140.dp),
+                            modifier = Modifier.fillMaxWidth().height(110.dp),
                             contentScale = ContentScale.Crop)
-                        Text(p.name, style = MaterialTheme.typography.titleMedium)
-                        Text(p.category, style = MaterialTheme.typography.bodySmall)
-                        Text(if (promo) "${fmt(p.price)} → ${fmt(priceOf(p.id))}" else fmt(p.price))
+                        Text(p.name, style = MaterialTheme.typography.titleSmall, maxLines = 2)
+                        Text(if (promo) "${fmt(p.price)} → ${fmt(priceOf(p.id))}" else fmt(p.price),
+                            style = MaterialTheme.typography.bodyMedium)
                         Button(onClick = { cart[p.id] = (cart[p.id] ?: 0) + 1; persist() }) {
                             Text("В корзину")
                         }
                     }
                 }
             }
-            item {
-                Spacer(Modifier.height(8.dp))
+            item(span = { GridItemSpan(maxLineSpan) }) {
+                Spacer(Modifier.height(4.dp))
                 Text("Корзина", style = MaterialTheme.typography.headlineSmall)
                 if (cart.isEmpty()) Text("Пусто")
             }
-            items(cart.entries.toList()) { (id, qty) ->
+            items(cart.entries.toList(), span = { GridItemSpan(maxLineSpan) }) { (id, qty) ->
                 val p = PRODUCTS.find { it.id == id } ?: return@items
                 Row(modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp),
                     horizontalArrangement = Arrangement.SpaceBetween) {
@@ -150,12 +158,12 @@ fun ShopApp(ctx: Context) {
                     }
                 }
             }
-            if (cart.isNotEmpty()) item {
+            if (cart.isNotEmpty()) item(span = { GridItemSpan(maxLineSpan) }) {
                 if (promo) Text("Без скидки: ${fmt(totalFull)} (−10%)")
                 Text("Итого: ${fmt(total)}", style = MaterialTheme.typography.titleMedium)
                 Button(onClick = { cart.clear(); persist() }) { Text("Очистить корзину") }
             }
-            item {
+            item(span = { GridItemSpan(maxLineSpan) }) {
                 if (!promo) {
                     OutlinedTextField(value = promoInput, onValueChange = { promoInput = it },
                         label = { Text("Промокод (WEB = −10%)") })
