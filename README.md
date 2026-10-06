@@ -1,42 +1,43 @@
-# weather_web
+# Магазин под Android (Kotlin + Compose) — ветка `android`
 
-This template should help get you started developing with Vue 3 in Vite.
+Нативный магазин: каталог 8 товаров с фото, поиск, фильтр по категориям,
+сортировка цены, корзина (+/−/удалить/очистить/итого), сохранение в
+`SharedPreferences`, промокод `WEB` (−10%).
 
-## Recommended IDE Setup
+Ветки репозитория:
+- `main` — веб (Vue)
+- `electron` — десктоп
+- `android` — Android (этот README)
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+Готовый APK (установка на телефон/планшет одной кнопкой) — в [Releases](../../releases).
 
-## Recommended Browser Setup
+## Требования
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+- Java 17+ (`java -version`)
+- Android SDK: platform-tools, `platforms;android-35`, `build-tools;35.0.0`
+  (через Android Studio или `sdkmanager`)
+- Переменные окружения `ANDROID_HOME` / `ANDROID_SDK_ROOT` на папку SDK
 
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
+## Сборка APK
 
 ```sh
-npm install
+cd android
+./gradlew :app:assembleDebug
 ```
 
-### Compile and Hot-Reload for Development
+APK: `android/app/build/outputs/apk/debug/app-debug.apk`.
+
+## Установка на устройство
+
+1. На устройстве: 7 тапов по номеру сборки → «Для разработчиков» →
+   включить «Отладка по USB», подключить кабелем, разрешить отладку.
+2. Проверить: `adb devices` (должен быть `device`).
+3. Поставить:
 
 ```sh
-npm run dev
+adb install -r android/app/build/outputs/apk/debug/app-debug.apk
 ```
 
-### Type-Check, Compile and Minify for Production
+## Промокод
 
-```sh
-npm run build
-```
+`WEB` — скидка 10%.

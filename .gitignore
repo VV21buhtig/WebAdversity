@@ -46,3 +46,6 @@ android/local.properties
 
 # Локальные запускалки (пути конкретной машины)
 runweb.bat
+
+# Electron-сборки
+release/
