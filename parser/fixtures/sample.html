@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <title>Тестовая выгрузка Циан</title>
+  </head>
+  <body>
+    <!--
+      Небольшой синтетический fixture для проверки парсера.
+      Разметка повторяет ключевые data-атрибуты карточки Циан, но данные
+      вымышленные. Реальные имена, телефоны и объявления здесь не нужны.
+    -->
+
+    <article data-name="CardComponent">
+      <a
+        data-name="TitleComponent"
+        href="https://novosibirsk.cian.ru/rent/flat/900000001/?context=test"
+      >
+        <span data-mark="OfferTitle">Светлая квартира у метро</span>
+        <div>
+          <span data-mark="OfferSubtitle">2-комн. квартира, 54 м², 9/16 этаж</span>
+        </div>
+      </a>
+      <div class="x-price-wrapper">45 000 ₽/мес.</div>
+      <div data-name="GeoLabel">Новосибирская область</div>
+      <div data-name="GeoLabel">Новосибирск</div>
+      <div data-name="GeoLabel">р-н Центральный</div>
+      <div data-name="GeoLabel">м. Площадь Ленина</div>
+      <div data-name="GeoLabel">Красный проспект, 10</div>
+      <div data-name="Description">
+        Уютная двушка с ремонтом, вся техника, рядом метро и магазины.
+      </div>
+      <img
+        src="https://placehold.co/800x600/e4f1ec/124d3f?text=Fixture+1"
+        alt=""
+      />
+      <img
+        src="https://placehold.co/800x600/fae9e4/d9664c?text=Fixture+2"
+        alt=""
+      />
+    </article>
+
+    <article data-name="CardComponent">
+      <a
+        data-name="TitleComponent"
+        href="https://novosibirsk.cian.ru/rent/flat/900000002/"
+      >
+        <div>
+          <span data-mark="OfferSubtitle">Студия, 28 м², 4/20 этаж</span>
+        </div>
+      </a>
+      <div class="x-price-wrapper">27 500 ₽/мес.</div>
+      <div data-name="GeoLabel">Новосибирская область</div>
+      <div data-name="GeoLabel">Новосибирск</div>
+      <div data-name="GeoLabel">р-н Заельцовский</div>
+      <div data-name="Description">Компактная студия после ремонта.</div>
+      <img
+        src="https://placehold.co/800x600/f5f2ec/1b2a24?text=Fixture+3"
+        alt=""
+      />
+    </article>
+
+    <!-- Неполная карточка: нет цены, фото, описания и ссылки. -->
+    <article data-name="CardComponent">
+      <a data-name="TitleComponent" href="#">
+        <div>
+          <span data-mark="OfferSubtitle">1-комн. квартира, 38,4 м²</span>
+        </div>
+      </a>
+      <div data-name="GeoLabel">Новосибирская область</div>
+      <div data-name="GeoLabel">Новосибирск</div>
+      <div data-name="GeoLabel">р-н Октябрьский</div>
+    </article>
+  </body>
+</html>

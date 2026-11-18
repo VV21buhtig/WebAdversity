@@ -1,0 +1,21 @@
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+
+export default defineConfig({
+  plugins: [vue()],
+  server: {
+    host: '0.0.0.0',
+    port: 5173,
+    // Снимок перезаписывается сборщиком. Без этого Vite делает full reload
+    // и сбрасывает поиск/фильтры прямо во время автоматической загрузки города.
+    watch: {
+      ignored: ['**/src/data/listings.json', '**/parser/data/**'],
+    },
+    proxy: {
+      '/api': {
+        target: 'http://127.0.0.1:3001',
+        changeOrigin: true,
+      },
+    },
+  },
+})
